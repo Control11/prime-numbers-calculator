@@ -12,30 +12,34 @@ import java.util.stream.Collectors;
 public class PrimeNumberCalculatorService implements ICalculator {
     @Override
     public List<Integer> calculate(int boundary) {
-        Map<Integer, Boolean> numbersStatus = new HashMap<>();
-        List<Integer> primeNumbers = new ArrayList<>();
+        if (boundary > 0) {
+            Map<Integer, Boolean> numbersStatus = new HashMap<>();
+            List<Integer> primeNumbers = new ArrayList<>();
 
-        for (int i = 2; i <= boundary; i++) {
-            numbersStatus.put(i, true);
-        }
+            for (int i = 2; i <= boundary; i++) {
+                numbersStatus.put(i, true);
+            }
 
-        for (int i = 2; i <= Math.sqrt(boundary); i++) {
-            if(numbersStatus.get(i)) {
-                for (int j = i * i; j <= boundary; j += i) {
-                    numbersStatus.put(j, false);
+            for (int i = 2; i <= Math.sqrt(boundary); i++) {
+                if (numbersStatus.get(i)) {
+                    for (int j = i * i; j <= boundary; j += i) {
+                        numbersStatus.put(j, false);
+                    }
                 }
             }
+
+            primeNumbers.addAll(
+                    numbersStatus.entrySet()
+                            .stream()
+                            .filter(entry -> entry.getValue())
+                            .map(entry -> entry.getKey())
+                            .collect(Collectors.toList())
+            );
+
+            return primeNumbers;
+        } else {
+            return new ArrayList<>();
         }
-
-        primeNumbers.addAll(
-                numbersStatus.entrySet()
-                        .stream()
-                        .filter(entry -> entry.getValue())
-                        .map(entry -> entry.getKey())
-                        .collect(Collectors.toList())
-        );
-
-        return primeNumbers;
     }
 
 }
