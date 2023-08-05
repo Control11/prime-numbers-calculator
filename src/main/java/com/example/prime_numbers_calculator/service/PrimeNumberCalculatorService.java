@@ -12,9 +12,9 @@ import java.util.stream.Collectors;
 public class PrimeNumberCalculatorService implements ICalculator {
     @Override
     public List<Integer> calculate(int boundary) {
+        List<Integer> primeNumbers = new ArrayList<>();
         if (boundary > 0) {
             Map<Integer, Boolean> numbersStatus = new HashMap<>();
-            List<Integer> primeNumbers = new ArrayList<>();
 
             for (int i = 2; i <= boundary; i++) {
                 numbersStatus.put(i, true);
@@ -35,11 +35,8 @@ public class PrimeNumberCalculatorService implements ICalculator {
                             .map(entry -> entry.getKey())
                             .collect(Collectors.toList())
             );
-
-            return primeNumbers;
-        } else {
-            return new ArrayList<>();
         }
+        return primeNumbers;
     }
 
 }
