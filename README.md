@@ -11,3 +11,5 @@ Enter boundary value in input area and click Calculate button. You will be trans
 
 ![prime_numbers_calculator_usage](https://github.com/Control11/prime-numbers-calculator/assets/84398641/91dfbb40-c427-4e68-8da7-8974c727ff36)
 
+## Used tools
+Project was built using Maven environment, Java 11, Lombok, Spring-Boot 2.7.13 version, Spring Web and Thymeleaf modules.
